@@ -1,8 +1,8 @@
 sudo: true
 language: php
 php:
-  - '7.1'
   - '7.2'
+  - '7.3'
 
 install:
   - sudo add-apt-repository ppa:ondrej/php -y
