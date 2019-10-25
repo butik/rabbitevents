@@ -25,7 +25,7 @@ class BroadcastEventServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        if ( ! $this->configIsOk()) {
+        if (!$this->configIsOk()) {
             return;
         }
 
@@ -86,7 +86,7 @@ class BroadcastEventServiceProvider extends ServiceProvider
         $this->app->singleton(PsrTopic::class, function ($app) {
             $context = $app->make(PsrContext::class);
 
-            $topic = $context->createTopic($this->exchangeName);
+            $topic = $context->createTopic($app['config']['queue']['broadcast_events_exchange'] ?? $this->exchangeName);
             $topic->setType(AmqpTopic::TYPE_TOPIC);
             $topic->addFlag(AmqpTopic::FLAG_DURABLE);
 
